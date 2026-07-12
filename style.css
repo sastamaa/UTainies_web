@@ -175,6 +175,17 @@ h1 {
   text-shadow: 0 4px 18px rgba(72, 29, 84, 0.22);
 }
 
+.page-box h1 {
+  color: #6b3f7f;
+  text-shadow: none;
+  font-size: clamp(38px, 5vw, 64px);
+}
+
+.page-box .note,
+.page-box p {
+  color: #6f6174;
+}
+
 .hero p {
   margin: 0;
   max-width: 58ch;
