@@ -133,7 +133,7 @@ img {
   background:
     linear-gradient(120deg, rgba(101, 57, 120, 0.24), rgba(255,255,255,0.08)),
     linear-gradient(180deg, rgba(72, 32, 94, 0.16), rgba(77, 36, 88, 0.42)),
-    url('https://image.tmdb.org/t/p/original/r6P9y4mTnKsDXXVNRrjTCwE5zNk.jpg') center/cover;
+    url('https://image.tmdb.org/t/p/original/19s4DNIDKbK1zXFxov5J4ECFogl.jpg') center/cover;
 }
 
 .hero-card::after {
