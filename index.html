@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Казковий Світ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c1020;
+      --bg-soft: #141a2f;
+      --card: rgba(255,255,255,0.08);
+      --card-strong: rgba(255,255,255,0.12);
+      --text: #f6f1e8;
+      --muted: #cfc7bb;
+      --gold: #f1c76e;
+      --rose: #ff8fb1;
+      --blue: #8ad6ff;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,143,177,0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(138,214,255,0.14), transparent 30%),
+        linear-gradient(180deg, #11162b 0%, #0a0d19 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(10,13,25,0.65);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--gold), var(--rose));
+      box-shadow: 0 10px 25px rgba(241,199,110,0.25);
+      color: #221506;
+      font-size: 20px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .hero {
+      padding: 42px 0 28px;
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      background:
+        linear-gradient(120deg, rgba(9,14,30,0.75), rgba(18,26,48,0.55)),
+        url('https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?auto=format&fit=crop&w=1600&q=80') center/cover;
+      min-height: 520px;
+      box-shadow: var(--shadow);
+      display: grid;
+      align-items: end;
+    }
+
+    .hero-overlay {
+      padding: 44px;
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      color: #fff4d8;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 58ch;
+      color: #f1ece3;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 0;
+      cursor: pointer;
+      transition: transform .18s ease, opacity .18s ease, background .18s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, #f4cb74, #ffb7cc);
+      color: #24180a;
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.12);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .section {
+      padding: 28px 0 10px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .section-link {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      transition: transform .22s ease, border-color .22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(241,199,110,0.35);
+    }
+
+    .card-cover {
+      aspect-ratio: 3/4;
+      width: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 16px;
+    }
+
+    .card-tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(241,199,110,0.15);
+      color: #ffd98f;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .card-title {
+      margin: 0 0 8px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .card-text {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+
+    .feature-panel,
+    .info-panel {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-panel {
+      min-height: 360px;
+      background:
+        linear-gradient(120deg, rgba(12,16,32,0.6), rgba(12,16,32,0.5)),
+        url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80') center/cover;
+      display: grid;
+      align-items: end;
+    }
+
+    .feature-content {
+      padding: 28px;
+      max-width: 560px;
+    }
+
+    .feature-content h3,
+    .info-panel h3 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .feature-content p,
+    .info-panel p,
+    .info-panel li {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .info-panel {
+      padding: 26px;
+    }
+
+    .info-panel ul {
+      margin: 18px 0 0;
+      padding-left: 18px;
+    }
+
+    .footer {
+      padding: 44px 0 54px;
+      color: #c7c0b4;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .hero-overlay { padding: 28px; }
+      .feature-row { grid-template-columns: 1fr; }
+      .topbar-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">✨</div>
+        <div>Казковий Світ</div>
+      </div>
+      <nav class="nav">
+        <a href="#popular">Популярне</a>
+        <a href="#series">Серіали</a>
+        <a href="#new">Новинки</a>
+        <a href="#about">Про проєкт</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="hero-overlay">
+            <div class="eyebrow">🌙 Казки • Мультики • Добрі історії</div>
+            <h1>Місце, де оживають дитячі казки</h1>
+            <p>
+              Збери на одному сайті свої улюблені мультфільми, добрі історії, грецькі та українські казки — у красивому стилі, як у Disney або Netflix, але повністю під себе.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#popular">Почати дивитися</a>
+              <a class="btn btn-secondary" href="#about">Як це працює</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="popular">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title">Популярні казки</div>
+          <a class="section-link" href="#">Дивитися всі</a>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <img class="card-cover" src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80" alt="Казка про зірки">
+            <div class="card-body">
+              <div class="card-tag">Найулюбленіше</div>
+              <h2 class="card-title">Казка про зірки</h2>
+              <p class="card-text">Ніжна історія перед сном із теплими кольорами, музикою й чарівною атмосферою.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img class="card-cover" src="https://images.unsplash.com/photo-1514894786521-9d48f8f1e0b5?auto=format&fit=crop&w=800&q=80" alt="Лісові пригоди">
+            <div class="card-body">
+              <div class="card-tag">Нова казка</div>
+              <h2 class="card-title">Лісові пригоди</h2>
+              <p class="card-text">Добра подорож через чарівний ліс із маленькими героями та великою мрією.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img class="card-cover" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Маленька принцеса">
+            <div class="card-body">
+              <div class="card-tag">Для малюків</div>
+              <h2 class="card-title">Маленька принцеса</h2>
+              <p class="card-text">Спокійна історія для вечора про дружбу, доброту та силу уяви.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img class="card-cover" src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80" alt="Чарівне море">
+            <div class="card-body">
+              <div class="card-tag">Грецькі історії</div>
+              <h2 class="card-title">Чарівне море</h2>
+              <p class="card-text">Казкова морська пригода з м'яким світлом, хвилями і теплим дитячим настроєм.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="series">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title">Серіали та збірки</div>
+          <a class="section-link" href="#">Відкрити каталог</a>
+        </div>
+        <div class="feature-row">
+          <div class="feature-panel">
+            <div class="feature-content">
+              <div class="card-tag">Сезони та серії</div>
+              <h3>Окрема сторінка для кожної казки або мультсеріалу</h3>
+              <p>
+                Тут ти зможеш зробити сторінки у стилі Netflix: обкладинка, опис, сезон 1, сезон 2, кнопки серій і великий плеєр усередині сайту.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#">Відкрити серіал</a>
+                <a class="btn btn-secondary" href="#">Додати нову історію</a>
+              </div>
+            </div>
+          </div>
+
+          <aside class="info-panel" id="about">
+            <div class="card-tag">GitHub Pages</div>
+            <h3>Чому це зручно</h3>
+            <p>
+              Цей шаблон можна безкоштовно розмістити на GitHub Pages, змінити тексти, картинки, кольори та додати окремі сторінки для кожної казки.
+            </p>
+            <ul>
+              <li>Безкоштовний хостинг для HTML/CSS/JS.</li>
+              <li>Можна підключити свій домен.</li>
+              <li>Підійде для Bunny, iframe-плеєра або простих відеосторінок.</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="new">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title">Новинки</div>
+          <a class="section-link" href="#">Усі нові казки</a>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <img class="card-cover" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80" alt="Нова казка 1">
+            <div class="card-body">
+              <div class="card-tag">Прем'єра</div>
+              <h2 class="card-title">Золота хмаринка</h2>
+              <p class="card-text">Світла дитяча історія з лагідною атмосферою і красивими ілюстраціями.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img class="card-cover" src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80" alt="Нова казка 2">
+            <div class="card-body">
+              <div class="card-tag">Скоро</div>
+              <h2 class="card-title">Таємниця місяця</h2>
+              <p class="card-text">Нічна казка для маленьких мрійників із музикою та м'яким сяйвом.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img class="card-cover" src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=800&q=80" alt="Нова казка 3">
+            <div class="card-body">
+              <div class="card-tag">Вибір тижня</div>
+              <h2 class="card-title">Лісова пісенька</h2>
+              <p class="card-text">Спокійний і милий сюжет, який ідеально підходить для вечірнього перегляду.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img class="card-cover" src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80" alt="Нова казка 4">
+            <div class="card-body">
+              <div class="card-tag">Українські казки</div>
+              <h2 class="card-title">Сонце в долонях</h2>
+              <p class="card-text">Теплий казковий світ із природою, добрими героями та затишним настроєм.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Казковий Світ • Безкоштовний шаблон для GitHub Pages • Заміни тексти, картинки й посилання на свої казки
+    </div>
+  </footer>
+</body>
+</html>
