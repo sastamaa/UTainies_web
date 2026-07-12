@@ -1,42 +1,71 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="el">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Серіали</title>
+  <title>Σειρές | UTainies</title>
   <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="container topbar-inner">
-      <div class="brand"><div class="brand-mark">📺</div><div>Серіали</div></div>
+      <div class="brand">
+        <div class="brand-mark">🎬</div>
+        <div>UTainies</div>
+      </div>
       <nav class="nav">
-        <a href="../index.html">Головна</a>
-        <a href="../fairy-tales/index.html">Казки</a>
-        <a href="../movies/index.html">Фільми</a>
+        <a href="../index.html">Αρχική</a>
+        <a href="../fairy-tales/index.html">Παραμύθια</a>
+        <a href="./index.html">Ταινίες</a>
+        <a href="../series/index.html">Σειρές</a>
       </nav>
     </div>
   </header>
+
   <main class="page-hero">
     <div class="container">
       <div class="page-box">
-        <div class="breadcrumbs"><a href="../index.html">Головна</a> / Серіали</div>
-        <h1>Серіали</h1>
-        <p class="note">Окремий каталог серіалів. Кожен серіал веде на свою сторінку з сезонами та серіями.</p>
+        <div class="breadcrumbs"><a href="../index.html">Αρχική</a> / Ταινίες</div>
+        <h1>Σειρές</h1>
       </div>
     </div>
+
     <section class="section">
       <div class="container">
-        <div class="grid">
-          <article class="card">
-            <img class="card-cover" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80" alt="Win or Lose">
-            <div class="card-body">
-              <div class="card-tag">Серіал</div>
-              <h3>Win or Lose</h3>
-              <p>Приклад сторінки серіалу з сезонами й серіями.</p>
-              <div class="actions"><a class="btn btn-primary" href="./win-or-lose.html">Відкрити</a></div>
-            </div>
-          </article>
+        <div class="movies-grid">
+          <a class="movie-card-link" href="./zootopia_2.html">
+            <article class="movie-card">
+              <img class="movie-poster" src="https://image.tmdb.org/t/p/w1280/9HZ88hvqU6XfgyXwKaSMkjWpkkj.jpg" alt="Ζωούπολη 2">
+              <div class="movie-card-body">
+                                <div class="card-tag">Ταινία</div>
+                <div class="card-tag">Mεταγλωτισμένο</div>
+                <h3 class="movie-title">Ζωούπολη 2</h3>
+              </div>
+            </article>
+          </a>
+
+          <a class="movie-card-link" href="./elio.html">
+            <article class="movie-card">
+              <img class="movie-poster" src="https://image.tmdb.org/t/p/w1280/x065s5hsSXQtZxQKeB3ua7DfgTo.jpg" alt="Έλιο">
+              <div class="movie-card-body">
+                                <div class="card-tag">Ταινία</div>
+                <div class="card-tag">Mεταγλωτισμένο</div>
+                <h3 class="movie-title">Έλιο</h3>
+              </div>
+            </article>
+          </a>
+
+          <a class="movie-card-link" href="./leo.html">
+            <article class="movie-card">
+              <img class="movie-poster" src="https://image.tmdb.org/t/p/w1280/gSOVog7ydsaF1YpgAqBqnKYFGY.jpg" alt="Λίο">
+              <div class="movie-card-body">
+                <div class="card-tag">Ταινία</div>
+                                <div class="card-tag">Mεταγλωτισμένο</div>
+                <h3 class="movie-title">Λίο (2023)</h3>
+              </div>
+            </article>
+          </a>
+
         </div>
       </div>
     </section>
