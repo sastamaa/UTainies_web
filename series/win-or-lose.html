@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Win or Lose</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand"><div class="brand-mark">🎞️</div><div>Win or Lose</div></div>
+      <nav class="nav">
+        <a href="../index.html">Головна</a>
+        <a href="./index.html">Усі серіали</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-hero">
+    <div class="container player-layout">
+      <aside class="sidebar-box">
+        <div class="breadcrumbs"><a href="../index.html">Головна</a> / <a href="./index.html">Серіали</a> / Win or Lose</div>
+        <h2>Сезони та серії</h2>
+        <p class="note">Змінюй назви серій та вставляй свої Streamtape/Bunny URL.</p>
+        <label class="note" for="seasonSelect">Сезон</label>
+        <select id="seasonSelect">
+          <option value="1">Сезон 1</option>
+          <option value="2">Сезон 2</option>
+        </select>
+        <div id="episodeList" style="margin-top:16px;"></div>
+      </aside>
+
+      <section class="content-box">
+        <h1>Win or Lose</h1>
+        <p class="note" id="nowPlaying">Зараз відтворюється: —</p>
+        <div class="video-box">
+          <iframe id="player" src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const seasons = {
+      1: [
+        { title: 'Серія 1', url: 'https://www.youtube.com/embed/tgbNymZ7vqY' },
+        { title: 'Серія 2', url: 'https://www.youtube.com/embed/tgbNymZ7vqY' }
+      ],
+      2: [
+        { title: 'Серія 1', url: 'https://www.youtube.com/embed/tgbNymZ7vqY' },
+        { title: 'Серія 2', url: 'https://www.youtube.com/embed/tgbNymZ7vqY' }
+      ]
+    };
+
+    const seasonSelect = document.getElementById('seasonSelect');
+    const episodeList = document.getElementById('episodeList');
+    const player = document.getElementById('player');
+    const nowPlaying = document.getElementById('nowPlaying');
+
+    let currentSeason = '1';
+    let currentEpisode = 0;
+
+    function renderEpisodes() {
+      episodeList.innerHTML = '';
+      seasons[currentSeason].forEach((ep, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'episode-btn' + (index === currentEpisode ? ' active' : '');
+        btn.textContent = ep.title;
+        btn.onclick = () => playEpisode(index);
+        episodeList.appendChild(btn);
+      });
+    }
+
+    function playEpisode(index) {
+      currentEpisode = index;
+      const ep = seasons[currentSeason][index];
+      player.src = ep.url;
+      nowPlaying.textContent = 'Зараз відтворюється: ' + ep.title;
+      renderEpisodes();
+    }
+
+    seasonSelect.addEventListener('change', () => {
+      currentSeason = seasonSelect.value;
+      currentEpisode = 0;
+      renderEpisodes();
+      playEpisode(0);
+    });
+
+    renderEpisodes();
+    playEpisode(0);
+  </script>
+</body>
+</html>
