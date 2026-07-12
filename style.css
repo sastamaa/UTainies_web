@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap');
-
 /* Art direction: premium children's entertainment -> warm, magical, soft
    Palette: cream + berry + sky + gold accents
-   Typography: Baloo 2 for display + Nunito for body
+   Typography: clean classic font for better Greek readability
    Density: spacious and friendly */
 
 :root {
@@ -32,13 +30,17 @@
 
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
-  font-family: 'Nunito', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   color: var(--text);
   background:
     radial-gradient(circle at top left, rgba(245,155,188,0.22), transparent 28%),
@@ -47,7 +49,10 @@ body {
     linear-gradient(180deg, #fffaf4 0%, #fff4e8 52%, #ffefdf 100%);
 }
 
-a { color: inherit; text-decoration: none; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
 img {
   max-width: 100%;
@@ -81,7 +86,7 @@ img {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: 'Baloo 2', cursive;
+  font-family: Arial, sans-serif;
   font-size: 26px;
   font-weight: 800;
   color: #6c3f7c;
@@ -168,7 +173,7 @@ img {
 
 h1 {
   margin: 0 0 16px;
-  font-family: 'Baloo 2', cursive;
+  font-family: Arial, sans-serif;
   font-size: clamp(42px, 6vw, 78px);
   line-height: 0.95;
   color: #fffaf6;
@@ -237,7 +242,7 @@ h1 {
 }
 
 .section-title {
-  font-family: 'Baloo 2', cursive;
+  font-family: Arial, sans-serif;
   font-size: 32px;
   font-weight: 800;
   color: #5c3a6e;
@@ -257,8 +262,7 @@ h1 {
 .card {
   overflow: hidden;
   border-radius: var(--radius);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,248,252,0.86));
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,248,252,0.86));
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -295,7 +299,7 @@ h1 {
 .card h3,
 .card h2 {
   margin: 0 0 8px;
-  font-family: 'Baloo 2', cursive;
+  font-family: Arial, sans-serif;
   font-size: 24px;
   line-height: 1.05;
   color: #553562;
