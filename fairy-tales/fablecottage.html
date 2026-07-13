@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Λίο | UTainies</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">🎥</div>
+        <div>UTainies</div>
+      </div>
+      <nav class="nav">
+        <a href="../index.html">Αρχική</a>
+        <a href="./index.html">Όλες οι ταινίες</a>
+        <a href="../fairy-tales/index.html">Παραμύθια</a>
+        <a href="../series/index.html">Σειρές</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-hero">
+    <div class="container player-layout">
+      <aside class="sidebar-box">
+        <div class="breadcrumbs">
+          <a href="../index.html">Αρχική</a> /
+          <a href="./index.html">Σειρές</a> /
+          Win or Lose
+        </div>
+        <h2>Κύκλοι και επεισόδια</h2>
+        <label class="note" for="seasonSelect">Κύκλος</label>
+        <select id="seasonSelect">
+          <option value="1">Κύκλος 1</option>
+          <option value="2">Κύκλος 2</option>
+        </select>
+        <div id="episodeList" style="margin-top:16px;"></div>
+      </aside>
+
+      <section class="content-box">
+        <h1>Win or Lose</h1>
+        <p class="note" id="nowPlaying">Τώρα παίζει: —</p>
+        <div class="video-box">
+          <iframe id="player" src="" allowfullscreen></iframe>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const seasons = {
+      1: [
+        { title: 'Χιονάτη.', url: 'https://app.heygen.com/embeds/ed55318e23c748119f91bc02ef30d991-el' },
+        { title: 'Ο ποντικός της πόλης και ο ποντικός της εξοχής', url: 'https://app.heygen.com/embeds/0570c74871634d1fbf986a54e3ca4c3d-el' }
+      ],
+      2: [
+        { title: 'Επεισόδιο 1', url: 'https://streamtape.com/e/pMlAo4PzPmIrglD' },
+        { title: 'Επεισόδιο 2', url: 'https://streamtape.com/e/xm2YR4MXdoukrVm' }
+      ]
+    };
+
+    const seasonSelect = document.getElementById('seasonSelect');
+    const episodeList = document.getElementById('episodeList');
+    const player = document.getElementById('player');
+    const nowPlaying = document.getElementById('nowPlaying');
+
+    let currentSeason = '1';
+    let currentEpisode = 0;
+
+    function renderEpisodes() {
+      episodeList.innerHTML = '';
+      seasons[currentSeason].forEach((ep, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'episode-btn' + (index === currentEpisode ? ' active' : '');
+        btn.textContent = ep.title;
+        btn.onclick = () => playEpisode(index);
+        episodeList.appendChild(btn);
+      });
+    }
+
+    function playEpisode(index) {
+      currentEpisode = index;
+      const ep = seasons[currentSeason][index];
+      player.src = ep.url;
+      nowPlaying.textContent = 'Τώρα παίζει: ' + ep.title;
+      renderEpisodes();
+    }
+
+    seasonSelect.addEventListener('change', () => {
+      currentSeason = seasonSelect.value;
+      currentEpisode = 0;
+      renderEpisodes();
+      playEpisode(0);
+    });
+
+    renderEpisodes();
+    playEpisode(0);
+  </script>
+</body>
+</html>
